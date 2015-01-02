@@ -55,26 +55,42 @@ class LinkedList:
 					node.next = node.next.next
 
 				# if the next node has been deleted, do not advance the pointer
-				continue	
 			
 			# if the next node is not a duplicate, advance the pointer
-			node = node.next
+			else: 
+				node = node.next
 
 
 	def remove_dupes_no_dict(self):
 		
 		# create two pointers
 		node = self.head
-		seeker = self.head.next
+		seeker = self.head
 
-		while node! = self.tail:
+		# loop the first pointer over the list
+		while node:
 
-			while seeker:
+			# loop the second pointer over the list
+			while seeker != self.tail:
 
-				if node.val != seeker.val:
+				# check if the value after the seeker is a duplicate, and 
+				# delete if so
+				if seeker.next.val == node.val:
+
+					# in case the tail is a duplicate
+					if seeker.next == self.tail:
+						self.tail = seeker
+						self.tail.next = None
+
+					else:
+						seeker.next = seeker.next.next
+
+				# if the next value is not a duplicate, advance the pointer
+				else:
 					seeker = seeker.next
 
-				else:
-					seeker.next = seeker.next
+			# advance the first pointer and reset the seeker
+			node = node.next
+			seeker = node
 
 
