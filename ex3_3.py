@@ -38,11 +38,28 @@ class SetOfStacks():
 
 	# pop off the last value of the last stack
 	def pop(self):
-		return self.stackset[-1].pop()
+		val = self.stackset[-1].pop()
+		# if the last stack is empty, delete it
+		if self.stackset[-1] == []:
+			self.stackset.pop()
+
+		return val
+
 
 	# pop off the last value of a specific substack
 	def pop_at_idx(self, idx):
-		return self.stackset[idx].pop()
+		# if we are not concerned at making sure all stacks are at capacity,
+		# this is all we need
+		# return self.stackset[idx].pop()
+
+		# otherwise:
+		val = self.stackset[idx].pop()
+
+		while idx < len(self.stackset) - 1:
+			self.stackset[idx].append(self.stackset[idx+1].pop(0))
+			idx += 1
+
+		return val
 
 	def print_me(self):
 		for stack in self.stackset:
