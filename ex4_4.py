@@ -52,8 +52,7 @@ class bTree:
 			return 0
 
 		else:
-			return max(self.get_height(node.left),
-						self.get_height(node.right)) + 1
+			return max(self.get_height(node.left), self.get_height(node.right)) + 1
 
 
 	def is_balanced(self, node):
